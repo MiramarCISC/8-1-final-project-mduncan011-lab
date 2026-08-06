@@ -1,0 +1,3 @@
+capital_of_france|paris
+2_plus_2|4
+color_of_sky|blue

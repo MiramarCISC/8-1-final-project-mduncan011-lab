@@ -1,3 +1,4 @@
+[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=24288071)
 # CISC 192 Final Project Template
 
 ## Overview
@@ -89,49 +90,104 @@ Students may keep the project structure, Makefile, GitHub Actions workflow, and 
 
 ## Required README Update
 
-Before submitting your final project, update this README.md so it describes your own project.
+This repository contains my completed Mini‑Game Arcade, an open‑ended C++ project demonstrating all seven course topics from Weeks 1–7.
+The project includes seven interactive mini‑games, a linked‑list game history, arrays, structs, file I/O, and full unit test coverage.
+
+All sample project code has been removed and replaced with my own original project.
+
+
+
+Project Description
+The Mini‑Game Arcade is a menu‑driven C++ program containing seven interactive games:
+
+Four Is the Magic Number  
+Repeatedly transforms a spelled‑out number until reaching “four.”
+
+Heads or Tails  
+Random coin flip; user guesses.
+
+High‑Low Number Guess  
+Program picks a number 1–50; user guesses until correct.
+
+Word Scramble  
+Uses an array of words, scrambles one, and the user guesses the original.
+
+Latest Game Result Viewer  
+Displays the most recent game result stored in a struct.
+
+Game History Viewer  
+Displays a linked list of all past game results.
+
+Trivia Challenge  
+Loads trivia questions from a file and quizzes the user.
 
 ```text
 ## Course Topics Integrated and Tested
 
 1. Week 1 Program Basics
-   - Code location:
-   - Test location:
+   - Code location: 
+         src/project.cpp → countLetters(), all mini‑games using cin/cout
+   - Test location: 
+         tests/test_project.cpp → testMagicFour()
 
 2. Week 2 Decisions and Loops
-   - Code location:
+   - Code location: 
+         src/main.cpp → menu loop + switch
+         src/project.cpp → playHighLowGame() guessing loop + input validation
    - Test location:
+         tests/test_project.cpp → testHighLowEvaluation()
 
 3. Week 3 Functions and Program Design
    - Code location:
+         All functions declared in include/project.hpp
+         Implemented in src/project.cpp
    - Test location:
+         All tests call project functions directly
 
 4. Week 4 Arrays, Searching, and Sorting
    - Code location:
+         src/project.cpp → Word Scramble
+            WORD_LIST[] array
+            isWordInList() search
+            scrambleWord() using std::shuffle
    - Test location:
+         tests/test_project.cpp → testWordListSearch()
 
 5. Week 5 Strings and Structures
    - Code location:
+         include/project.hpp → struct GameResult
+         src/project.cpp → storing game results in structs
+         checkGuess() uses string comparison
    - Test location:
+         tests/test_project.cpp → testStructAndHistory()
 
 6. Week 6 Pointers, Dynamic Memory, and Linked Lists
    - Code location:
+         include/project.hpp → struct HistoryNode
+         src/project.cpp →
+            addGameResult()
+            printHistory()
+            clearHistory()
    - Test location:
+         tests/test_project.cpp → testStructAndHistory()
 
 7. Week 7 File I/O and Integration
    - Code location:
+         src/project.cpp → loadTriviaFromFile() and playTrivia()
+         Trivia file stored in data/trivia.txt
    - Test location:
+         tests/test_project.cpp → testTriviaLoad()
 ```
 
 ## Final Submission Checklist
 
-- [ ] My project compiles with `make`.
-- [ ] My project runs with `./main`.
-- [ ] My tests run with `make test`.
-- [ ] I deleted or replaced the sample project code.
-- [ ] My project uses class names that are nouns from my own project.
-- [ ] My project integrates all 7 course topics in reachable code.
-- [ ] My project includes at least one unit test per course topic.
-- [ ] My README explains where each topic appears.
-- [ ] My README explains which test verifies each topic.
-- [ ] My code is committed and pushed to GitHub Classroom.
+- [x] My project compiles with `make`.
+- [x] My project runs with `./main`.
+- [x] My tests run with `make test`.
+- [x] I deleted or replaced the sample project code.
+- [x] My project uses class names that are nouns from my own project.
+- [x] My project integrates all 7 course topics in reachable code.
+- [x] My project includes at least one unit test per course topic.
+- [x] My README explains where each topic appears.
+- [x] My README explains which test verifies each topic.
+- [x] My code is committed and pushed to GitHub Classroom.

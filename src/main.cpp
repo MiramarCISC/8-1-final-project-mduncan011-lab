@@ -4,92 +4,74 @@
 using namespace std;
 
 int main() {
-    int choice = -1;
+    bool running = true;
+    HistoryNode* history = nullptr;
 
-    cout << "CISC 192 Final Project Sample" << endl;
-    cout << "Sample code is provided only as an example." << endl;
-    cout << "Delete or replace the sample code before final submission." << endl;
-
-    do {
+    while (running) {
         printMenu();
-        cin >> choice;
-
-        while (!isValidMenuChoice(choice)) {
-            cout << "Invalid choice. Enter 0-4: ";
-            cin >> choice;
-        }
+        int choice = getMenuChoice();
 
         switch (choice) {
             case 1: {
-                Student student("A123", "Alex");
-                student.getScoreList().addScore(90.0);
-                student.getScoreList().addScore(80.0);
-                student.getScoreList().addScore(100.0);
-                student.getScoreList().sortAscending();
-
-                printStudent(student);
-                cout << "Score 100 found at index "
-                     << student.getScoreList().findScore(100.0)
-                     << endl;
-
+                string word;
+                cout << "Enter a spelled-out number (e.g., thirteen): ";
+                cin >> word;
+                string result = toMagicFour(word);
+                cout << result << endl;
+                GameResult gr{"Four is the Magic Number", result};
+                addGameResult(history, gr);
                 break;
             }
 
             case 2: {
-                TaskList tasks;
-                tasks.insertFront(Task("study", 5));
-                tasks.insertFront(Task("project", 4));
-                tasks.markTaskComplete("study");
+                string actual = randomHeadsOrTails();
+                string guess;
+                cout << "Heads or tails? ";
+                cin >> guess;
 
-                cout << "Task count: " << tasks.countTasks() << endl;
-                cout << "Removed completed tasks: "
-                     << tasks.removeCompletedTasks()
-                     << endl;
-                cout << "Remaining task count: " << tasks.countTasks() << endl;
-
-                break;
-            }
-
-            case 3: {
-                InventoryItem items[MAX_INVENTORY_ITEMS];
-                int count = InventoryReport::readInventoryFile(
-                    "data/inventory.txt",
-                    items,
-                    MAX_INVENTORY_ITEMS
-                );
-
-                cout << "Read " << count << " inventory item(s)." << endl;
-                cout << "Total inventory value: "
-                     << InventoryReport::calculateTotalInventoryValue(items, count)
-                     << endl;
-
-                if (InventoryReport::writeInventoryReport(
-                        "inventory_report.txt",
-                        items,
-                        count
-                    )) {
-                    cout << "Report written to inventory_report.txt" << endl;
+                if (checkGuess(guess, actual)) {
+                    cout << "yay!" << endl;
+                    GameResult gr{"Heads or Tails", "Guessed correctly"};
+                    addGameResult(history, gr);
+                } else {
+                    cout << "nope! It was " << actual << endl;
+                    GameResult gr{"Heads or Tails", "Guessed incorrectly"};
+                    addGameResult(history, gr);
                 }
-
                 break;
             }
+
+            case 3:
+                playHighLowGame(history);
+                break;
 
             case 4:
-                cout << "Use this sample only as an example. "
-                     << "Delete or replace sample code before submission."
-                     << endl;
+                playWordScramble(history);
+                break;
+
+            case 5:
+                playResultViewer(history);
+                break;
+
+            case 6:
+                playHistoryViewer(history);
+                break;
+
+            case 7:
+                playTrivia(history);
                 break;
 
             case 0:
-                cout << "Goodbye!" << endl;
+                running = false;
                 break;
 
             default:
-                cout << "Unexpected choice." << endl;
+                cout << "Invalid choice." << endl;
                 break;
         }
+    }
 
-    } while (choice != 0);
-
+    clearHistory(history);
+    cout << "Goodbye!" << endl;
     return 0;
 }
